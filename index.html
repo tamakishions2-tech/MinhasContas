@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0F5C4D">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%230F5C4D%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2752%27 text-anchor=%27middle%27 fill=%27white%27 font-family=%27sans-serif%27 font-weight=%27700%27%3ER$%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Minhas contas</title>
+</head>
+<body>
+<script id="app">(function(){
+"use strict";
+var LSO='minhascontas.codigo.v1';
+var OVERRIDE=null;try{OVERRIDE=localStorage.getItem(LSO);}catch(e){}
+if(location.hash==='#original')OVERRIDE=null;
+if(OVERRIDE&&!window.__mcOverride){window.__mcOverride=1;document.open();document.write(OVERRIDE);document.close();return;}
+var PREFIX='<!doctype html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n<meta name="theme-color" content="#0F5C4D">\n<meta name="mobile-web-app-capable" content="yes">\n<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 rx=%2722%27 fill=%27%230F5C4D%27/%3E%3Ctext x=%2750%27 y=%2768%27 font-size=%2752%27 text-anchor=%27middle%27 fill=%27white%27 font-family=%27sans-serif%27 font-weight=%27700%27%3ER$%3C/text%3E%3C/svg%3E">\n<link rel="manifest" href="manifest.json">\n<link rel="apple-touch-icon" href="icon-192.png">\n<title>Minhas contas</title>\n</head>\n<body>\n<script id="app">';
+var SUFFIX='<\/script>\n</body>\n</html>\n';
+var SRC=(document.getElementById('app')||{}).textContent||'';
+function fonteAtual(){return PREFIX+SRC+SUFFIX;}
+
+var CSS=`
+:root{--bg:#EEF2F1;--surface:#FFFFFF;--ink:#14211F;--muted:#5B6B68;--line:#D5DEDC;--accent:#0F5C4D;--accent-ink:#FFFFFF;--warn:#A8690F;--danger:#C0392B;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1615;--surface:#16211F;--ink:#E4EEEC;--muted:#94A6A2;--line:#273532;--accent:#5CC9AE;--accent-ink:#06231C;--warn:#E8B04B;--danger:#F07B6E;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E1615;--surface:#16211F;--ink:#E4EEEC;--muted:#94A6A2;--line:#273532;--accent:#5CC9AE;--accent-ink:#06231C;--warn:#E8B04B;--danger:#F07B6E;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 120px}
+.top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:18px}
+.top h1{font-size:1.35rem;margin:0;font-weight:700;letter-spacing:-.01em}
+.sync{font-size:.8rem;color:var(--muted);text-align:right}
+.hero{background:var(--accent);color:var(--accent-ink);border-radius:22px;padding:22px 20px 18px;margin-bottom:26px}
+.hero-label{margin:0;font-size:.95rem;opacity:.85}
+.hero-num{margin:2px 0 16px;font-size:clamp(2.4rem,11vw,3.6rem);font-weight:700;line-height:1.05;letter-spacing:-.03em}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:12px;border-top:1px solid rgba(127,127,127,.35);padding-top:12px}
+.split span{display:block;font-size:.82rem;opacity:.85}.split b{font-size:1.1rem}
+h2{font-size:1.1rem;margin:0 0 10px;font-weight:650}
+.list{display:flex;flex-direction:column;gap:8px;margin:0 0 14px;padding:0;list-style:none}
+.item{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 10px 10px 14px}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--c);flex:none}
+.info{flex:1;min-width:0}
+.t{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.s{font-size:.82rem;color:var(--muted)}
+.v{text-align:right;font-weight:650;white-space:nowrap}
+.item.perto .s{color:var(--warn);font-weight:600}
+.item.atrasada{border-color:var(--danger)}
+.item.atrasada .s{color:var(--danger);font-weight:600}
+.pagas .item{opacity:.72}
+[role=button]{cursor:pointer}
+button{font:inherit;font-size:.9rem;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 12px;min-height:40px;cursor:pointer}
+button:disabled{opacity:.45;cursor:default}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+button.danger{color:var(--danger)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[role=button]:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.app{margin-bottom:30px}
+.app-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.app-head h2{margin:0;flex:1}
+.app-head .tot{font-weight:650}
+.cartao{background:var(--surface);background:color-mix(in srgb,var(--c) 10%,var(--surface));border:1px solid var(--line);border-left:6px solid var(--c);border-radius:16px;padding:12px 12px 12px 14px;margin-bottom:10px}
+.c-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.c-nome{font-weight:650}
+.c-fat{margin:4px 0 10px}
+.c-fat span{display:block;font-size:.8rem;color:var(--muted)}
+.c-fat strong{font-size:1.6rem;letter-spacing:-.02em}
+.c-dias{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0}
+.c-dias div{background:var(--surface);border-radius:10px;padding:8px}
+.c-dias dt{font-size:.74rem;color:var(--muted);line-height:1.25}
+.c-dias dd{margin:2px 0 0;font-weight:650}
+.c-dias small{display:block;font-size:.74rem;color:var(--muted)}
+.hoje{display:inline-block;background:var(--c);color:#fff;font-size:.74rem;font-weight:700;padding:2px 8px;border-radius:99px;margin-left:8px;vertical-align:2px}
+.vazio{color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:14px;padding:14px 16px;margin:0 0 14px}
+.add{width:100%;border-style:dashed;color:var(--accent);font-weight:600;background:transparent}
+details.pagas{margin:0 0 12px}
+details.pagas summary{cursor:pointer;color:var(--muted);font-size:.9rem;padding:4px 0 8px}
+.dica-dia{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--c);border-radius:14px;padding:10px 14px;margin:0 0 8px}
+.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+.tabs button{flex:1;max-width:180px;border:0;border-radius:0;background:none;color:var(--muted);padding:12px 4px 14px;min-height:56px;font-weight:600}
+.tabs button[aria-current="page"]{color:var(--accent);box-shadow:inset 0 3px 0 var(--accent)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center;z-index:20;padding:12px 12px calc(12px + env(safe-area-inset-bottom,0px))}
+.modal[hidden]{display:none}
+.sheet{background:var(--surface);color:var(--ink);width:100%;max-width:520px;border-radius:20px;padding:18px;max-height:88vh;overflow:auto}
+.sheet h3{margin:0 0 14px;font-size:1.15rem}
+label{display:block;font-size:.88rem;color:var(--muted);margin-bottom:12px}
+input,select,textarea{display:block;width:100%;margin-top:4px;font:inherit;font-size:1rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+input[type=color]{height:44px;padding:4px}
+textarea{min-height:150px;font-family:ui-monospace,Menlo,monospace;font-size:.8rem;resize:vertical}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dica{font-size:.82rem;color:var(--muted);margin:-4px 0 14px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.sp{flex:1}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:16px}
+.panel p{color:var(--muted);margin:0 0 12px;font-size:.92rem}
+.panel .row{margin-top:10px}
+a.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-size:.9rem;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 12px;min-height:40px}
+a.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+a.btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.lemb-btn{width:100%;margin:0 0 12px;font-weight:600;color:var(--accent);border-color:var(--accent);background:transparent}
+.lembs{margin-bottom:18px}
+.alerta{display:flex;align-items:center;gap:12px;background:var(--surface);border:2px solid var(--warn);border-radius:14px;padding:12px 12px 12px 14px;margin:0 0 10px}
+.c-venc{margin:0 0 10px;font-size:.92rem}
+#toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-size:.9rem;width:max-content;max-width:90vw;opacity:0;pointer-events:none;transition:opacity .2s;z-index:30}
+#toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){#toast{transition:none}}
+`;
+var st=document.createElement('style');st.textContent=CSS;document.head.appendChild(st);
+var fl=document.createElement('link');fl.rel='stylesheet';fl.href='https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&display=swap';document.head.appendChild(fl);
+
+var root=document.createElement('div');
+root.innerHTML='<div class="wrap"><header class="top"><h1>Minhas contas</h1><span class="sync" id="sync"></span></header><main id="view"></main></div>'+
+'<nav class="tabs" aria-label="Seções">'+[['inicio','Início'],['bancos','Bancos'],['contas','Contas'],['atual','Atualizações']].map(function(x){return '<button data-tab="'+x[0]+'">'+x[1]+'</button>';}).join('')+'</nav>'+
+'<div id="modal" class="modal" hidden></div><div id="toast" role="status" aria-live="polite"></div>';
+while(root.firstChild)document.body.appendChild(root.firstChild);
+
+function $(s){return document.querySelector(s);}
+function novoId(){return Math.random().toString(36).slice(2,9);}
+function brl(v){return (+v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});}
+function parseMoney(s){s=String(s||'').trim().replace(/[R$\s]/g,'');if(s.indexOf(',')>-1)s=s.replace(/\./g,'').replace(',','.');var n=parseFloat(s);return isFinite(n)?Math.round(n*100)/100:0;}
+function moneyInput(v){return v?Number(v).toFixed(2).replace('.',','):'';}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function cor(a){return /^#[0-9a-f]{6}$/i.test(a.cor||'')?a.cor:'#5B6B68';}
+function clampDia(v){var n=parseInt(v,10);return Math.min(31,Math.max(1,isFinite(n)?n:1));}
+function hoje(){var d=new Date();d.setHours(0,0,0,0);return d;}
+function diasNoMes(y,m){return new Date(y,m+1,0).getDate();}
+function proximoDia(dia){var h=hoje(),y=h.getFullYear(),m=h.getMonth();var d=new Date(y,m,Math.min(dia,diasNoMes(y,m)));if(d<h){m++;if(m>11){m=0;y++;}d=new Date(y,m,Math.min(dia,diasNoMes(y,m)));}return d;}
+function diasAte(d){return Math.round((d-hoje())/86400000);}
+function melhorDia(f){return f>=31?1:f+1;}
+function fmtData(d){return d.toLocaleDateString('pt-BR',{day:'2-digit',month:'short'}).replace('.','');}
+function parseISO(s){var p=String(s).split('-').map(Number);return new Date(p[0],p[1]-1,p[2]);}
+function isoHoje(n){var d=hoje();d.setDate(d.getDate()+(n||0));return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function quando(n){if(n<0)return 'venceu há '+(-n)+(n<-1?' dias':' dia');if(n===0)return 'vence hoje';if(n===1)return 'vence amanhã';return 'vence em '+n+' dias';}
+function fmtCurta(d){return d.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'});}
+function emDias(n){return n===0?'hoje':n===1?'amanhã':'em '+n+' dias';}
+
+function padrao(){return {apps:[
+{id:'enel',nome:'Enel',tipo:'conta',cor:'#1C6FD9',contas:[],cartoes:[]},
+{id:'comgas',nome:'Comgás',tipo:'conta',cor:'#0E9BD1',contas:[],cartoes:[]},
+{id:'net',nome:'Net',tipo:'conta',cor:'#D7262E',contas:[],cartoes:[]},
+{id:'itau',nome:'Itaú',tipo:'banco',cor:'#EC7000',contas:[],cartoes:[]},
+{id:'santander',nome:'Santander',tipo:'banco',cor:'#E30613',contas:[],cartoes:[]},
+{id:'bradesco',nome:'Bradesco',tipo:'banco',cor:'#CC092F',contas:[],cartoes:[]},
+{id:'nubank',nome:'Nubank',tipo:'banco',cor:'#820AD1',contas:[],cartoes:[]}]};}
+function valido(j){return j&&Array.isArray(j.apps);}
+function normalizar(j){j.lembretes=j.lembretes||[];j.apps.forEach(function(a){a.cartoes=a.cartoes||[];a.contas=a.contas||[];});return j;}
+
+var LS='minhascontas.estado.v1',LSV='minhascontas.versoes.v1';
+var S=null,V=null,tab='inicio',db=null,uid=null,art=null,nuvem='local',timer=null,fila=Promise.resolve();
+function pathE(){return 'data/users/'+uid+'/carteira';}
+function pathV(){return 'data/users/'+uid+'/versoes';}
+function appById(id){return S.apps.filter(function(a){return a.id===id;})[0];}
+
+function totais(){var fat=0,con=0;S.apps.forEach(function(a){if(a.tipo==='banco')a.cartoes.forEach(function(c){fat+=c.fatura||0;});else a.contas.forEach(function(b){if(!b.paga)con+=b.valor||0;});});return {fat:fat,con:con,tot:fat+con};}
+function pendencias(){var out=[];S.apps.forEach(function(a){if(a.tipo==='banco'){a.cartoes.forEach(function(c){if(c.fatura>0){var d=proximoDia(c.vence);out.push({tipo:'fatura',app:a,item:c,data:d,valor:c.fatura,n:diasAte(d)});}});}else{a.contas.forEach(function(b){if(!b.paga&&b.vence){var d=parseISO(b.vence);out.push({tipo:'conta',app:a,item:b,data:d,valor:b.valor,n:diasAte(d)});}});}});return out.sort(function(x,y){return x.data-y.data;});}
+
+function itemPend(p){var cls=p.n<0?'atrasada':p.n<=3?'perto':'';var tit=p.tipo==='fatura'?'Fatura do '+p.item.nome:(p.item.desc||'Conta');
+return '<li class="item '+cls+'" style="--c:'+cor(p.app)+'"><span class="dot"></span><div class="info"><div class="t">'+esc(p.app.nome)+': '+esc(tit)+'</div><div class="s">Vencimento '+fmtCurta(p.data)+', '+quando(p.n)+'</div></div><div class="v num">'+brl(p.valor)+'</div><button data-act="'+(p.tipo==='fatura'?'pagar-fatura':'pagar-conta')+'" data-app="'+p.app.id+'" data-id="'+p.item.id+'">Paguei</button></li>';}
+
+function quandoLemb(l){var p=String(l.hora||'09:00').split(':');var d=parseISO(l.data);d.setHours(+p[0]||0,+p[1]||0,0,0);return d;}
+function lembVencidos(){var agora=new Date();return S.lembretes.filter(function(l){return !l.feito&&quandoLemb(l)<=agora;});}
+function linkAgenda(l){var d=quandoLemb(l),f=new Date(d.getTime()+30*60000);function z(x){return String(x).padStart(2,'0');}function g(x){return x.getFullYear()+z(x.getMonth()+1)+z(x.getDate())+'T'+z(x.getHours())+z(x.getMinutes())+'00';}
+return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(l.texto||'Atualizar minhas contas')+'&details='+encodeURIComponent('Abrir o app Minhas contas e atualizar faturas e contas.')+'&dates='+g(d)+'/'+g(f);}
+function dataLemb(l){return quandoLemb(l).toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'});}
+function vLembretes(){var venc=lembVencidos();var prox=S.lembretes.filter(function(l){return !l.feito&&quandoLemb(l)>new Date();}).sort(function(a,b){return quandoLemb(a)-quandoLemb(b);});
+var h=venc.map(function(l){return '<div class="alerta"><div class="info"><div class="t">'+esc(l.texto)+'</div><div class="s">Lembrete de '+dataLemb(l)+'</div></div><button class="primary" data-act="lemb-feito" data-id="'+l.id+'">Feito</button></div>';}).join('');
+h+='<button class="lemb-btn" data-act="add-lemb">Criar lembrete</button>';
+if(prox.length)h+='<ul class="list lembs">'+prox.map(function(l){return '<li class="item"><div class="info"><div class="t">'+esc(l.texto)+'</div><div class="s">'+dataLemb(l)+'</div></div><a class="btn" href="'+linkAgenda(l)+'" target="_blank" rel="noopener">Agenda</a><button data-act="del-lemb" data-id="'+l.id+'" aria-label="Apagar lembrete">Apagar</button></li>';}).join('')+'</ul>';
+return h;}
+function formLembrete(){abrirModal('<form data-form="lemb"><h3>Novo lembrete</h3>'+
+'<label>Mensagem<input name="texto" value="Atualizar minhas contas" required></label>'+
+'<div class="duo"><label>Data<input name="data" type="date" required value="'+isoHoje(1)+'"></label><label>Hora<input name="hora" type="time" required value="09:00"></label></div>'+
+'<p class="dica">O aviso aparece aqui no Início quando você abrir o app. Para receber a notificação mesmo com o app fechado, depois de salvar toque em “Colocar na agenda”.</p>'+botoes('')+'</form>');}
+function vInicio(){var t=totais(),p=pendencias(),dia=hoje().getDate(),bons=[];
+S.apps.forEach(function(a){if(a.tipo==='banco')a.cartoes.forEach(function(c){if(melhorDia(c.fecha)===dia)bons.push('<p class="dica-dia" style="--c:'+cor(a)+'">Hoje é o melhor dia para comprar no '+esc(c.nome)+' ('+esc(a.nome)+').</p>');});});
+return vLembretes()+'<section class="hero"><p class="hero-label">Total que você deve agora</p><p class="hero-num num">'+brl(t.tot)+'</p><div class="split"><div><span>Faturas de cartão</span><b class="num">'+brl(t.fat)+'</b></div><div><span>Contas da casa</span><b class="num">'+brl(t.con)+'</b></div></div></section>'+
+bons.join('')+(bons.length?'<div style="height:16px"></div>':'')+
+'<h2>Próximos vencimentos</h2>'+(p.length?'<ul class="list">'+p.map(itemPend).join('')+'</ul>':'<p class="vazio">Nada para pagar. Coloque o valor das faturas em <b>Bancos</b> e as contas que chegarem em <b>Contas</b>.</p>');}
+
+function cartaoHTML(a,c){var md=melhorDia(c.fecha),nf=diasAte(proximoDia(c.fecha)),ehHoje=hoje().getDate()===md;
+return '<article class="cartao"><div class="c-top"><span class="c-nome">'+esc(c.nome)+(ehHoje?'<span class="hoje">Hoje é o melhor dia</span>':'')+'</span><button data-act="edit-cartao" data-app="'+a.id+'" data-id="'+c.id+'">Editar</button></div>'+
+'<div class="c-fat"><span>Fatura atual</span><strong class="num">'+brl(c.fatura)+'</strong></div>'+
+'<p class="c-venc">Vencimento da fatura: <b>'+proximoDia(c.vence).toLocaleDateString('pt-BR')+'</b> ('+emDias(diasAte(proximoDia(c.vence)))+')</p>'+
+'<dl class="c-dias"><div><dt>Melhor dia de compra</dt><dd>Dia '+md+'</dd></div><div><dt>Fechamento</dt><dd>'+fmtCurta(proximoDia(c.fecha))+'</dd><small>'+emDias(nf)+'</small></div><div><dt>Vencimento</dt><dd>'+fmtCurta(proximoDia(c.vence))+'</dd><small>todo dia '+c.vence+'</small></div></dl></article>';}
+
+function cabeca(a,tot){return '<div class="app-head"><span class="dot"></span><h2>'+esc(a.nome)+'</h2><span class="tot num">'+brl(tot)+'</span><button data-act="edit-app" data-id="'+a.id+'" aria-label="Editar '+esc(a.nome)+'">Editar</button></div>';}
+
+function vBancos(){return S.apps.filter(function(a){return a.tipo==='banco';}).map(function(a){var tot=a.cartoes.reduce(function(s,c){return s+(c.fatura||0);},0);
+return '<section class="app" style="--c:'+cor(a)+'">'+cabeca(a,tot)+(a.cartoes.length?a.cartoes.map(function(c){return cartaoHTML(a,c);}).join(''):'<p class="vazio">Nenhum cartão cadastrado.</p>')+'<button class="add" data-act="add-cartao" data-app="'+a.id+'">Adicionar cartão</button></section>';}).join('')+
+'<button class="add" data-act="add-app" data-tipo="banco">Adicionar outro banco</button>';}
+
+function contaHTML(a,b){var n=diasAte(parseISO(b.vence)),cls=n<0?'atrasada':n<=3?'perto':'';
+return '<li class="item '+cls+'"><div class="info" role="button" tabindex="0" data-act="edit-conta" data-app="'+a.id+'" data-id="'+b.id+'"><div class="t">'+esc(b.desc||'Conta')+'</div><div class="s">Vencimento '+parseISO(b.vence).toLocaleDateString('pt-BR')+', '+quando(n)+'</div></div><div class="v num">'+brl(b.valor)+'</div><button data-act="pagar-conta" data-app="'+a.id+'" data-id="'+b.id+'">Paguei</button></li>';}
+function pagaHTML(a,b){return '<li class="item"><div class="info"><div class="t">'+esc(b.desc||'Conta')+'</div><div class="s">paga em '+new Date(b.pagaEm||Date.now()).toLocaleDateString('pt-BR')+'</div></div><div class="v num">'+brl(b.valor)+'</div><button data-act="desfazer-conta" data-app="'+a.id+'" data-id="'+b.id+'">Desfazer</button></li>';}
+
+function vContas(){return S.apps.filter(function(a){return a.tipo==='conta';}).map(function(a){
+var pend=a.contas.filter(function(b){return !b.paga;}).sort(function(x,y){return x.vence<y.vence?-1:1;});
+var pagas=a.contas.filter(function(b){return b.paga;}).sort(function(x,y){return (y.pagaEm||0)-(x.pagaEm||0);}).slice(0,3);
+var tot=pend.reduce(function(s,b){return s+(b.valor||0);},0);
+return '<section class="app" style="--c:'+cor(a)+'">'+cabeca(a,tot)+(pend.length?'<ul class="list">'+pend.map(function(b){return contaHTML(a,b);}).join('')+'</ul>':'<p class="vazio">Nenhuma conta em aberto.</p>')+
+(pagas.length?'<details class="pagas"><summary>Pagas recentemente</summary><ul class="list">'+pagas.map(function(b){return pagaHTML(a,b);}).join('')+'</ul></details>':'')+
+'<button class="add" data-act="add-conta" data-app="'+a.id+'">Adicionar conta</button></section>';}).join('')+
+'<button class="add" data-act="add-app" data-tipo="conta">Adicionar outra empresa</button>';}
+
+function vAtual(){var tem=V&&V.anterior,g=ghCfg();
+var ghPanel='<section class="panel"><h2>Publicar no GitHub</h2><p>'+(g?'Conectado a <b>'+esc(g.user)+'/'+esc(g.repo)+'</b>. As atualizações vão para o GitHub e valem para todos os aparelhos.':'Conecte seu repositório para que as atualizações valham para todos os aparelhos. Sem isso, elas ficam só neste tablet.')+' O token fica salvo só neste aparelho.</p>'+
+'<label>Usuário do GitHub<input id="gh-user" autocapitalize="off" value="'+esc(g?g.user:'tamakishio')+'"></label>'+
+'<label>Repositório<input id="gh-repo" autocapitalize="off" value="'+esc(g?g.repo:'minhas-contas')+'"></label>'+
+'<label>Token<input id="gh-token" type="password" autocomplete="off" placeholder="'+(g?'Salvo. Cole outro para trocar':'github_pat_…')+'" value="'+(g?esc(g.token):'')+'"></label>'+
+'<div class="row"><button class="primary" data-act="gh-salvar">'+(g?'Salvar alterações':'Conectar')+'</button>'+(g?'<button class="danger" data-act="gh-sair">Desconectar</button>':'')+'</div></section>';
+return ghPanel+'<section class="panel"><h2>Atualizar o código</h2><p>Cole aqui o código HTML completo da nova versão e toque em <b>Aplicar código</b>. Seus bancos, cartões e contas continuam salvos.</p><textarea id="codigo" spellcheck="false" autocapitalize="off" autocomplete="off" placeholder="Cole o código aqui (começa com &lt;!doctype html&gt;)"></textarea><div class="row"><button class="primary" data-act="aplicar">Aplicar código</button><button data-act="copiar">Copiar código atual</button></div></section>'+
+'<section class="panel"><h2>Voltar à versão anterior</h2><p>'+(tem?'A versão anterior está guardada desde '+new Date(V.quando).toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'})+'. Voltar troca as duas de lugar, então dá para desfazer. Se um código novo deixar a página em branco, abra o endereço com #original no final para usar a versão de fábrica.':'Ainda não há versão anterior. Ela é guardada sozinha na primeira vez que você aplicar um código.')+'</p><button data-act="voltar"'+(tem?'':' disabled')+'>Voltar à versão anterior</button></section>'+
+'<section class="panel"><h2>Backup dos dados</h2><p>Copie seus dados para guardar onde quiser, ou cole um backup aqui para restaurar.</p><textarea id="backup" spellcheck="false" autocapitalize="off" placeholder="Cole um backup aqui para restaurar"></textarea><div class="row"><button data-act="backup-copiar">Copiar backup</button><button data-act="backup-restaurar">Restaurar backup</button></div></section>';}
+
+function render(){var v=$('#view');if(!v)return;var keep={};['codigo','backup'].forEach(function(id){var el=document.getElementById(id);if(el)keep[id]=el.value;});
+v.innerHTML=tab==='inicio'?vInicio():tab==='bancos'?vBancos():tab==='contas'?vContas():vAtual();
+Object.keys(keep).forEach(function(id){var el=document.getElementById(id);if(el)el.value=keep[id];});
+document.querySelectorAll('.tabs button').forEach(function(b){if(b.dataset.tab===tab)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});}
+
+function setSync(){var s=$('#sync');if(s)s.textContent={ok:'Salvo na sua conta',local:'Salvo neste aparelho',erro:'Sem conexão: salvo neste aparelho'}[nuvem];}
+var tt;function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(function(){t.classList.remove('on');},3400);}
+
+function salvar(){try{localStorage.setItem(LS,JSON.stringify(S));}catch(e){}clearTimeout(timer);timer=setTimeout(salvarAgora,800);render();}
+function salvarAgora(){clearTimeout(timer);fila=fila.then(function(){if(!(db&&uid)){setSync();return;}return db.doc(pathE()).set({json:JSON.stringify(S),em:Date.now()}).then(function(){nuvem='ok';},function(){nuvem='erro';}).then(setSync);});return fila;}
+function salvarVersoes(v){V=v;localStorage.setItem(LSV,JSON.stringify(v));}
+function comPrazo(p,ms){return Promise.race([p,new Promise(function(_,r){setTimeout(function(){r(new Error('timeout'));},ms);})]);}
+
+function abrirModal(html){var m=$('#modal');m.innerHTML='<div class="sheet" role="dialog" aria-modal="true">'+html+'</div>';m.hidden=false;var f=m.querySelector('input');if(f)f.focus();}
+function fecharModal(){var m=$('#modal');m.hidden=true;m.innerHTML='';}
+function botoes(delAttrs){return '<div class="row">'+(delAttrs?'<button type="button" class="danger" '+delAttrs+'>Remover</button>':'')+'<span class="sp"></span><button type="button" data-act="fechar">Cancelar</button><button class="primary">Salvar</button></div>';}
+
+function formApp(a,tipo){var x=a||{nome:'',tipo:tipo||'banco',cor:tipo==='conta'?'#0E9BD1':'#3B6FD9'};
+abrirModal('<form data-form="app" data-id="'+(a?a.id:'')+'"><h3>'+(a?'Editar '+esc(a.nome):'Adicionar aplicativo')+'</h3>'+
+'<label>Nome<input name="nome" required value="'+esc(x.nome)+'" placeholder="Ex.: Inter, Sabesp, Vivo"></label>'+
+'<label>Tipo<select name="tipo"><option value="banco"'+(x.tipo==='banco'?' selected':'')+'>Banco ou cartão de crédito</option><option value="conta"'+(x.tipo==='conta'?' selected':'')+'>Conta da casa (luz, gás, internet…)</option></select></label>'+
+'<label>Cor<input type="color" name="cor" value="'+cor(x)+'"></label>'+botoes(a?'data-act="del-app" data-id="'+a.id+'"':'')+'</form>');}
+function formCartao(a,c){c=c||{};
+abrirModal('<form data-form="cartao" data-app="'+a.id+'" data-id="'+(c.id||'')+'"><h3>'+(c.id?'Editar cartão':'Novo cartão')+' do '+esc(a.nome)+'</h3>'+
+'<label>Nome do cartão<input name="nome" required value="'+esc(c.nome||'')+'" placeholder="Ex.: Platinum, Roxinho"></label>'+
+'<label>Valor da fatura atual<input name="fatura" inputmode="decimal" value="'+moneyInput(c.fatura)+'" placeholder="0,00"></label>'+
+'<div class="duo"><label>Dia do fechamento<input name="fecha" type="number" inputmode="numeric" min="1" max="31" required value="'+(c.fecha||'')+'"></label><label>Dia do vencimento<input name="vence" type="number" inputmode="numeric" min="1" max="31" required value="'+(c.vence||'')+'"></label></div>'+
+'<p class="dica">O melhor dia de compra é calculado sozinho: é o dia seguinte ao fechamento.</p>'+botoes(c.id?'data-act="del-cartao" data-app="'+a.id+'" data-id="'+c.id+'"':'')+'</form>');}
+function formConta(a,b){b=b||{};
+abrirModal('<form data-form="conta" data-app="'+a.id+'" data-id="'+(b.id||'')+'"><h3>'+(b.id?'Editar conta':'Nova conta')+' da '+esc(a.nome)+'</h3>'+
+'<label>Descrição<input name="desc" value="'+esc(b.desc||'')+'" placeholder="Ex.: Conta de novembro"></label>'+
+'<label>Valor<input name="valor" inputmode="decimal" required value="'+moneyInput(b.valor)+'" placeholder="0,00"></label>'+
+'<label>Vencimento<input name="vence" type="date" required value="'+(b.vence||isoHoje(7))+'"></label>'+botoes(b.id?'data-act="del-conta" data-app="'+a.id+'" data-id="'+b.id+'"':'')+'</form>');}
+
+function acharCartao(a,id){return a.cartoes.filter(function(c){return c.id===id;})[0];}
+function acharConta(a,id){return a.contas.filter(function(c){return c.id===id;})[0];}
+
+document.addEventListener('submit',function(e){var f=e.target.closest('form[data-form]');if(!f)return;e.preventDefault();var fd=new FormData(f),d={};fd.forEach(function(v,k){d[k]=v;});var k=f.dataset.form,a;
+if(k==='app'){var nome=String(d.nome||'').trim();if(!nome)return;a=appById(f.dataset.id);if(!a){a={id:novoId(),cartoes:[],contas:[]};S.apps.push(a);}a.nome=nome;a.tipo=d.tipo==='conta'?'conta':'banco';a.cor=d.cor;tab=a.tipo==='banco'?'bancos':'contas';}
+if(k==='cartao'){a=appById(f.dataset.app);var c=acharCartao(a,f.dataset.id);if(!c){c={id:novoId()};a.cartoes.push(c);}c.nome=String(d.nome||'').trim()||'Cartão';c.fatura=parseMoney(d.fatura);c.fecha=clampDia(d.fecha);c.vence=clampDia(d.vence);}
+if(k==='lemb'){var l={id:novoId(),texto:String(d.texto||'').trim()||'Atualizar minhas contas',data:d.data||isoHoje(1),hora:d.hora||'09:00',feito:false};S.lembretes.push(l);fecharModal();salvar();
+abrirModal('<h3>Lembrete criado</h3><p class="dica" style="margin:0 0 14px">Para o tablet avisar mesmo com o app fechado, coloque o lembrete na sua agenda.</p><div class="row"><span class="sp"></span><button type="button" data-act="fechar">Agora não</button><a class="btn primary" href="'+linkAgenda(l)+'" target="_blank" rel="noopener" data-act="fechar">Colocar na agenda</a></div>');return;}
+if(k==='conta'){a=appById(f.dataset.app);var b=acharConta(a,f.dataset.id);if(!b){b={id:novoId(),paga:false};a.contas.push(b);}b.desc=String(d.desc||'').trim();b.valor=parseMoney(d.valor);b.vence=d.vence||isoHoje(0);}
+fecharModal();salvar();});
+
+function copiarTexto(txt,ta){function manual(){if(ta){ta.value=txt;ta.focus();ta.select();}toast('O texto está na caixa: toque e segure para copiar.');}
+try{navigator.clipboard.writeText(txt).then(function(){toast('Copiado.');},manual);}catch(e){manual();}}
+
+function codigoAtual(){var o=null;try{o=localStorage.getItem(LSO);}catch(e){}return o;}
+function trocarCodigo(novo,anterior){try{localStorage.setItem(LS,JSON.stringify(S));salvarVersoes({anterior:anterior,quando:Date.now()});if(novo)localStorage.setItem(LSO,novo);else localStorage.removeItem(LSO);}catch(e){toast('Não deu para guardar o código: o armazenamento está cheio.');return;}
+if(location.hash==='#original')history.replaceState(null,'',location.pathname+location.search);location.reload();}
+var LSG='minhascontas.github.v1';
+function ghCfg(){try{var g=JSON.parse(localStorage.getItem(LSG)||'null');return g&&g.user&&g.repo&&g.token?g:null;}catch(e){return null;}}
+function ghUrl(g){return 'https://api.github.com/repos/'+encodeURIComponent(g.user)+'/'+encodeURIComponent(g.repo)+'/contents/index.html';}
+function b64enc(t){return btoa(unescape(encodeURIComponent(t)));}
+function b64dec(t){return decodeURIComponent(escape(atob(String(t).replace(/\s/g,''))));}
+function ghPublicar(code,msg){var g=ghCfg();var h={'Authorization':'Bearer '+g.token,'Accept':'application/vnd.github+json'};
+return fetch(ghUrl(g)+'?t='+Date.now(),{headers:h,cache:'no-store'}).then(function(r){
+if(!r.ok)throw new Error(r.status===404?'Não achei o index.html nesse repositório. Confira usuário e repositório.':r.status===401?'O GitHub não aceitou o token.':'O GitHub respondeu com erro '+r.status+'.');return r.json();}).then(function(atual){
+var antigo=b64dec(atual.content);
+return fetch(ghUrl(g),{method:'PUT',headers:h,body:JSON.stringify({message:msg,content:b64enc(code),sha:atual.sha})}).then(function(p){
+if(!p.ok)throw new Error(p.status===401||p.status===403||p.status===404?'O token não tem permissão para alterar esse repositório.':'O GitHub respondeu com erro '+p.status+'.');return antigo;});});}
+function avisoPublicado(){abrirModal('<h3>Publicado no GitHub</h3><p class="dica" style="margin:0 0 14px">A atualização vale para todos os aparelhos. O GitHub leva de 1 a 10 minutos para mostrar a versão nova. Depois disso, feche e abra o app.</p><div class="row"><span class="sp"></span><button type="button" data-act="fechar">Ok</button><button type="button" class="primary" data-act="recarregar">Recarregar agora</button></div>');}
+function aplicar(){var code=($('#codigo').value||'').trim();
+if(!/^<!doctype html/i.test(code)){toast('O código precisa começar com <!doctype html>.');return;}
+if(ghCfg()){if(!confirm('Publicar este código no GitHub? A atualização vai valer para todos os aparelhos.'))return;
+toast('Enviando para o GitHub…');
+ghPublicar(code,'Atualização pelo app Minhas contas').then(function(antigo){salvarVersoes({anterior:antigo,quando:Date.now(),gh:true});try{localStorage.removeItem(LSO);}catch(e){}$('#codigo').value='';render();avisoPublicado();}).catch(function(e){toast(e.message||'Não deu para enviar. Confira a internet.');});return;}
+if(!confirm('Aplicar este código só neste aparelho? A página vai recarregar com a nova versão.'))return;
+trocarCodigo(code,codigoAtual()||'__ORIGINAL__');}
+function voltar(){if(!V||!V.anterior)return;
+if(V.gh){if(!ghCfg()){toast('Conecte o GitHub de novo para voltar a versão.');return;}
+if(!confirm('Voltar à versão anterior no GitHub? Vale para todos os aparelhos.'))return;
+toast('Enviando para o GitHub…');
+ghPublicar(V.anterior,'Voltar à versão anterior').then(function(antigo){salvarVersoes({anterior:antigo,quando:Date.now(),gh:true});render();avisoPublicado();}).catch(function(e){toast(e.message||'Não deu para enviar. Confira a internet.');});return;}
+if(!confirm('Voltar à versão anterior? A página vai recarregar.'))return;
+var prev=V.anterior==='__ORIGINAL__'?null:V.anterior;trocarCodigo(prev,codigoAtual()||'__ORIGINAL__');}
+
+document.addEventListener('click',function(e){var m=$('#modal');if(e.target===m){fecharModal();return;}
+var b=e.target.closest('[data-act],[data-tab]');if(!b)return;
+if(b.dataset.tab){tab=b.dataset.tab;render();window.scrollTo(0,0);return;}
+var act=b.dataset.act,a=appById(b.dataset.app),it;
+switch(act){
+case 'fechar':setTimeout(fecharModal,0);break;
+case 'add-app':formApp(null,b.dataset.tipo);break;
+case 'edit-app':formApp(appById(b.dataset.id));break;
+case 'del-app':a=appById(b.dataset.id);if(a&&confirm('Remover '+a.nome+' e tudo que está nele?')){S.apps=S.apps.filter(function(x){return x!==a;});fecharModal();salvar();}break;
+case 'add-cartao':formCartao(a);break;
+case 'edit-cartao':formCartao(a,acharCartao(a,b.dataset.id));break;
+case 'del-cartao':it=acharCartao(a,b.dataset.id);if(it&&confirm('Remover o cartão '+it.nome+'?')){a.cartoes=a.cartoes.filter(function(x){return x!==it;});fecharModal();salvar();}break;
+case 'pagar-fatura':it=acharCartao(a,b.dataset.id);if(it&&confirm('Marcar a fatura do '+it.nome+' como paga? O valor volta para zero.')){it.fatura=0;salvar();toast('Fatura marcada como paga.');}break;
+case 'add-conta':formConta(a);break;
+case 'edit-conta':formConta(a,acharConta(a,b.dataset.id));break;
+case 'del-conta':it=acharConta(a,b.dataset.id);if(it&&confirm('Remover esta conta?')){a.contas=a.contas.filter(function(x){return x!==it;});fecharModal();salvar();}break;
+case 'pagar-conta':it=acharConta(a,b.dataset.id);if(it){it.paga=true;it.pagaEm=Date.now();var pg=a.contas.filter(function(x){return x.paga;}).sort(function(x,y){return (y.pagaEm||0)-(x.pagaEm||0);});if(pg.length>12){var fora=pg.slice(12);a.contas=a.contas.filter(function(x){return fora.indexOf(x)<0;});}salvar();toast('Conta marcada como paga.');}break;
+case 'desfazer-conta':it=acharConta(a,b.dataset.id);if(it){it.paga=false;delete it.pagaEm;salvar();}break;
+case 'add-lemb':formLembrete();break;
+case 'lemb-feito':S.lembretes.forEach(function(l){if(l.id===b.dataset.id)l.feito=true;});S.lembretes=S.lembretes.filter(function(l){return !l.feito||quandoLemb(l)>Date.now()-30*86400000;});salvar();toast('Lembrete concluído.');break;
+case 'del-lemb':S.lembretes=S.lembretes.filter(function(l){return l.id!==b.dataset.id;});salvar();break;
+case 'recarregar':location.reload();break;
+case 'gh-salvar':var gu=$('#gh-user').value.trim(),gr=$('#gh-repo').value.trim(),gt=$('#gh-token').value.trim();if(!gu||!gr||!gt){toast('Preencha usuário, repositório e token.');break;}try{localStorage.setItem(LSG,JSON.stringify({user:gu,repo:gr,token:gt}));}catch(e){}render();toast('GitHub conectado.');break;
+case 'gh-sair':if(confirm('Desconectar o GitHub deste aparelho?')){try{localStorage.removeItem(LSG);}catch(e){}render();}break;
+case 'aplicar':aplicar();break;
+case 'copiar':copiarTexto(codigoAtual()||fonteAtual(),$('#codigo'));break;
+case 'voltar':voltar();break;
+case 'backup-copiar':copiarTexto(JSON.stringify(S),$('#backup'));break;
+case 'backup-restaurar':var j=null;try{j=JSON.parse($('#backup').value);}catch(err){}if(!valido(j)){toast('Esse texto não é um backup válido.');break;}if(confirm('Trocar seus dados atuais por este backup?')){S=normalizar(j);$('#backup').value='';salvar();toast('Backup restaurado.');}break;
+}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('#modal').hidden)fecharModal();if(e.key==='Enter'&&e.target.getAttribute&&e.target.getAttribute('role')==='button')e.target.click();});
+
+try{S=JSON.parse(localStorage.getItem(LS));}catch(e){}
+if(!valido(S))S=padrao();normalizar(S);
+try{V=JSON.parse(localStorage.getItem(LSV)||'null');}catch(e){}
+render();setSync();
+
+setInterval(function(){if(tab==='inicio'&&$('#modal').hidden)render();},60000);
+document.addEventListener('visibilitychange',function(){if(!document.hidden&&tab==='inicio'&&$('#modal').hidden)render();});
+if('serviceWorker' in navigator&&location.protocol==='https:'){navigator.serviceWorker.register('sw.js').catch(function(){});}
+try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist();}catch(e){}
+
+})();
+</script>
+</body>
+</html>
